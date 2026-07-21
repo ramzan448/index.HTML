@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iqama Renewal Fee Calculator 2026 | Saudi Arabia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zodiak:wght@400;500&family=Fraunces:opsz,wght@9..144,400;9..144,600&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12312B;
+    --sand:#F1E9D8;
+    --sand-deep:#E4D8BE;
+    --gold:#B9862F;
+    --teal:#2F6E64;
+    --white:#FFFFFF;
+    --line: rgba(18,49,43,0.14);
+    --font-display: "Fraunces", serif;
+    --font-arabic: "IBM Plex Sans Arabic", sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--sand);
+    color:var(--ink);
+    font-family: var(--font-arabic);
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .band{
+    height:10px;
+    width:100%;
+    background:
+      repeating-linear-gradient(135deg,
+        var(--gold) 0 6px,
+        transparent 6px 12px);
+    opacity:0.9;
+  }
+
+  .wrap{
+    max-width:920px;
+    margin:0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    border-bottom: 1px solid var(--line);
+    padding-bottom:28px;
+    margin-bottom:40px;
+    gap: 20px;
+    flex-wrap:wrap;
+  }
+  .eyebrow{
+    font-size:12.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--teal);
+    font-weight:600;
+    margin-bottom:10px;
+  }
+  h1{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:40px;
+    line-height:1.08;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  .updated{
+    font-size:13px;
+    color:var(--ink);
+    opacity:0.55;
+    text-align:right;
+    white-space:nowrap;
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap:40px;
+  }
+  @media (max-width:760px){
+    .grid{grid-template-columns:1fr;}
+    h1{font-size:32px;}
+  }
+
+  .card{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:2px;
+    padding:32px;
+  }
+
+  .field{
+    margin-bottom:26px;
+  }
+  .field:last-child{margin-bottom:0;}
+  label{
+    display:block;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:0.02em;
+    margin-bottom:10px;
+    color:var(--ink);
+  }
+  .hint{
+    font-size:12px;
+    color:var(--ink);
+    opacity:0.5;
+    margin-top:6px;
+    line-height:1.4;
+  }
+
+  .segmented{
+    display:flex;
+    border:1px solid var(--line);
+    border-radius:2px;
+    overflow:hidden;
+  }
+  .segmented button{
+    flex:1;
+    background:var(--white);
+    border:none;
+    padding:11px 8px;
+    font-family:inherit;
+    font-size:13.5px;
+    cursor:pointer;
+    color:var(--ink);
+    border-right:1px solid var(--line);
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .segmented button:last-child{border-right:none;}
+  .segmented button.active{
+    background:var(--ink);
+    color:var(--sand);
+  }
+  .segmented button:focus-visible{
+    outline:2px solid var(--gold);
+    outline-offset:-2px;
+  }
+
+  .stepper{
+    display:flex;
+    align-items:center;
+    gap:0;
+    border:1px solid var(--line);
+    border-radius:2px;
+    width:fit-content;
+  }
+  .stepper button{
+    width:40px;
+    height:40px;
+    background:var(--sand-deep);
+    border:none;
+    font-size:18px;
+    cursor:pointer;
+    color:var(--ink);
+    font-family:inherit;
+  }
+  .stepper button:hover{background:var(--gold); color:var(--white);}
+  .stepper .count{
+    width:56px;
+    text-align:center;
+    font-size:16px;
+    font-weight:600;
+  }
+
+  .toggle-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:14px 16px;
+    border:1px solid var(--line);
+    border-radius:2px;
+    background:var(--sand);
+  }
+  .switch{
+    position:relative;
+    width:42px;
+    height:24px;
+    background:var(--line);
+    border-radius:20px;
+    cursor:pointer;
+    flex-shrink:0;
+    border:none;
+    padding:0;
+  }
+  .switch.on{background:var(--teal);}
+  .switch::after{
+    content:"";
+    position:absolute;
+    top:3px; left:3px;
+    width:18px; height:18px;
+    background:var(--white);
+    border-radius:50%;
+    transition: transform 0.15s ease;
+  }
+  .switch.on::after{transform:translateX(18px);}
+
+  /* Result panel */
+  .result-card{
+    background:var(--ink);
+    color:var(--sand);
+    border-radius:2px;
+    padding:32px;
+    position:sticky;
+    top:24px;
+  }
+  .result-label{
+    font-size:12px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    opacity:0.65;
+    margin-bottom:6px;
+  }
+  .result-total{
+    font-family:var(--font-display);
+    font-size:44px;
+    font-weight:600;
+    line-height:1;
+    margin-bottom:4px;
+  }
+  .result-sar{
+    font-size:14px;
+    opacity:0.6;
+    margin-bottom:28px;
+  }
+  .breakdown-line{
+    display:flex;
+    justify-content:space-between;
+    font-size:13.5px;
+    padding:10px 0;
+    border-bottom:1px solid rgba(241,233,216,0.14);
+  }
+  .breakdown-line:last-child{border-bottom:none;}
+  .breakdown-line .who{
+    opacity:0.55;
+    font-size:11px;
+    display:block;
+    margin-top:2px;
+  }
+  .split{
+    margin-top:24px;
+    padding-top:20px;
+    border-top:1px solid rgba(241,233,216,0.2);
+  }
+  .split-line{
+    display:flex;
+    justify-content:space-between;
+    font-size:13.5px;
+    margin-bottom:8px;
+  }
+  .split-line strong{color:var(--gold);}
+
+  footer.note{
+    margin-top:40px;
+    font-size:12px;
+    color:var(--ink);
+    opacity:0.55;
+    line-height:1.6;
+    border-top:1px solid var(--line);
+    padding-top:20px;
+  }
+</style>
+</head>
+<body>
+
+<div class="band"></div>
+
+<div class="wrap">
+
+  <header>
+    <div>
+      <div class="eyebrow">Absher &middot; Muqeem &middot; Qiwa — reference tool</div>
+      <h1>Iqama Renewal<br>Fee Calculator</h1>
+    </div>
+    <div class="updated">Rates updated for 2026</div>
+  </header>
+
+  <div class="grid">
+
+    <div class="card">
+
+      <div class="field">
+        <label>Who is renewing?</label>
+        <div class="segmented" id="workerType">
+          <button class="active" data-val="company">Company employee</button>
+          <button data-val="domestic">Domestic worker</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Renewal period</label>
+        <div class="segmented" id="period">
+          <button data-val="3">3 months</button>
+          <button data-val="6">6 months</button>
+          <button data-val="9">9 months</button>
+          <button class="active" data-val="12">12 months</button>
+        </div>
+      </div>
+
+      <div class="field" id="saudizationField">
+        <label>Employer's Saudization status</label>
+        <div class="segmented" id="saudization">
+          <button class="active" data-val="compliant">Meets Nitaqat ratio</button>
+          <button data-val="not">Below Saudi-employee ratio</button>
+        </div>
+        <div class="hint">Sets the monthly work-permit levy: SAR 700 if Saudi employees are not exceeded by expats, SAR 800 if they are.</div>
+      </div>
+
+      <div class="field">
+        <label>Sponsored dependents</label>
+        <div class="stepper">
+          <button id="depMinus">−</button>
+          <div class="count" id="depCount">0</div>
+          <button id="depPlus">+</button>
+        </div>
+        <div class="hint">Wife and children under 18. SAR 400/month per dependent, prorated to the renewal period selected above.</div>
+      </div>
+
+      <div class="field">
+        <div class="toggle-row">
+          <div>
+            <div style="font-size:13.5px; font-weight:500;">Newly arrived dependents (90-day grace)</div>
+            <div class="hint" style="margin-top:2px;">Removes up to 3 months of dependent levy.</div>
+          </div>
+          <button class="switch" id="graceToggle"></button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="result-card">
+      <div class="result-label">Estimated total</div>
+      <div class="result-total" id="totalSAR">0</div>
+      <div class="result-sar" id="periodLabel">SAR &middot; 12 months</div>
+
+      <div class="breakdown-line">
+        <span>Base Iqama fee<span class="who">Employer pays</span></span>
+        <span id="lineBase">0</span>
+      </div>
+      <div class="breakdown-line">
+        <span>Work permit levy<span class="who">Employer pays</span></span>
+        <span id="lineLevy">0</span>
+      </div>
+      <div class="breakdown-line">
+        <span>Dependent levy<span class="who">Sponsor pays</span></span>
+        <span id="lineDep">0</span>
+      </div>
+      <div class="breakdown-line">
+        <span>Absher processing fee<span class="who">Per transaction</span></span>
+        <span id="lineAbsher">0</span>
+      </div>
+
+      <div class="split">
+        <div class="split-line"><span>Employer-side total</span><strong id="employerTotal">0</strong></div>
+        <div class="split-line"><span>Dependent-side total</span><strong id="depTotal">0</strong></div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="note">
+    Figures are 2026 public-guidance estimates (base fee ≈ SAR 650/yr company &middot; SAR 600/yr domestic, work-permit levy SAR 700–800/month, dependent levy SAR 400/month, Absher fee ≈ SAR 51.75). Actual amounts can vary by Nitaqat category, insurance provider, and outstanding penalties. Confirm the exact payable amount in Absher, Muqeem or Qiwa before paying.
+  </footer>
+
+</div>
+
+<script>
+  const state = {
+    workerType: 'company',
+    period: 12,
+    saudization: 'compliant',
+    dependents: 0,
+    grace: false
+  };
+
+  function setActive(container, val){
+    container.querySelectorAll('button').forEach(b=>{
+      b.classList.toggle('active', b.dataset.val === val);
+    });
+  }
+
+  document.getElementById('workerType').addEventListener('click', e=>{
+    if(e.target.tagName !== 'BUTTON') return;
+    state.workerType = e.target.dataset.val;
+    setActive(e.currentTarget, state.workerType);
+    document.getElementById('saudizationField').style.display = state.workerType === 'domestic' ? 'none' : 'block';
+    render();
+  });
+
+  document.getElementById('period').addEventListener('click', e=>{
+    if(e.target.tagName !== 'BUTTON') return;
+    state.period = parseInt(e.target.dataset.val, 10);
+    setActive(e.currentTarget, String(state.period));
+    render();
+  });
+
+  document.getElementById('saudization').addEventListener('click', e=>{
+    if(e.target.tagName !== 'BUTTON') return;
+    state.saudization = e.target.dataset.val;
+    setActive(e.currentTarget, state.saudization);
+    render();
+  });
+
+  document.getElementById('depPlus').addEventListener('click', ()=>{
+    state.dependents = Math.min(state.dependents + 1, 15);
+    document.getElementById('depCount').textContent = state.dependents;
+    render();
+  });
+  document.getElementById('depMinus').addEventListener('click', ()=>{
+    state.dependents = Math.max(state.dependents - 1, 0);
+    document.getElementById('depCount').textContent = state.dependents;
+    render();
+  });
+
+  const graceBtn = document.getElementById('graceToggle');
+  graceBtn.addEventListener('click', ()=>{
+    state.grace = !state.grace;
+    graceBtn.classList.toggle('on', state.grace);
+    render();
+  });
+
+  function fmt(n){
+    return n.toLocaleString('en-US', {maximumFractionDigits: 2});
+  }
+
+  function render(){
+    const months = state.period;
+
+    // Base Iqama fee: annual 650 (company) / 600 (domestic), prorated
+    const annualBase = state.workerType === 'domestic' ? 600 : 650;
+    const base = Math.round((annualBase / 12) * months);
+
+    // Work permit levy: only for company employees, employer pays
+    let levy = 0;
+    if(state.workerType === 'company'){
+      const monthlyLevy = state.saudization === 'compliant' ? 700 : 800;
+      levy = monthlyLevy * months;
+    }
+
+    // Dependent levy: 400/month/dependent, minus up to 3 months grace
+    const graceMonths = state.grace ? Math.min(3, months) : 0;
+    const billableMonths = Math.max(months - graceMonths, 0);
+    const dep = 400 * state.dependents * billableMonths;
+
+    // Absher processing fee: flat per transaction
+    const absher = 51.75;
+
+    const total = base + levy + dep + absher;
+    const employerSide = base + levy + absher;
+
+    document.getElementById('totalSAR').textContent = fmt(total);
+    document.getElementById('periodLabel').textContent = `SAR · ${months} month${months>1?'s':''}`;
+    document.getElementById('lineBase').textContent = fmt(base);
+    document.getElementById('lineLevy').textContent = fmt(levy);
+    document.getElementById('lineDep').textContent = fmt(dep);
+    document.getElementById('lineAbsher').textContent = fmt(absher);
+    document.getElementById('employerTotal').textContent = fmt(employerSide);
+    document.getElementById('depTotal').textContent = fmt(dep);
+  }
+
+  render();
+</script>
+
+</body>
+</html>
